@@ -15,6 +15,17 @@ FROM openjdk:8-jdk-alpine
 
 # Set the working directory
 WORKDIR /app
+<settings>
+  <servers>
+    <server>
+      <id>aspose-maven-repository</id>
+      <username>YOUR_ASPOSE_USERNAME</username>
+      <password>YOUR_ASPOSE_PASSWORD</password>
+    </server>
+  </servers>
+</settings>
+COPY settings.xml /root/.m2/settings.xml
+
 
 # Copy the built JAR from the build stage
 COPY --from=build /app/target/*.jar app.jar
