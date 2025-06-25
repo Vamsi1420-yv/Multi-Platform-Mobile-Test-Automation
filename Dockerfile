@@ -1,23 +1,23 @@
-# Use a valid Maven image with JDK 8
-FROM maven:3.8.8-jdk-8 AS build
+# Stage 1: Build the application using Maven
+FROM maven:3.8.8-eclipse-temurin-8 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the project files into the container
+# Copy the entire project
 COPY . .
 
-# Build the Maven project (skipping tests for speed)
+# Build the project (skip tests if needed)
 RUN mvn clean package -DskipTests
 
-# Use a slim JDK base image for runtime
-FROM openjdk:8-jdk-alpine
+# Stage 2: Run the application using a lightweight JDK base image
+FROM eclipse-temurin:8-jdk
 
-# Set the working directory
+# Set the working directory for runtime
 WORKDIR /app
 
 # Copy the built jar from the previous stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Run the jar file
+# Command to run the application
 CMD ["java", "-jar", "app.jar"]
