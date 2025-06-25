@@ -1,0 +1,9 @@
+<settings>
+  <servers>
+    <server>
+      <id>aspose-maven-repository</id>
+      <username>your_username</username>
+      <password>your_password</password>
+    </server>
+  </servers>
+</settings>
