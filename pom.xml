@@ -73,7 +73,9 @@
     <repositories>
     <repository>
         <id>aspose-maven-repository</id>
-        <url>https://maven.aspose.com/repository/repo/</url>
+        <name>Aspose Repository</name>
+        <url>https://repository.aspose.com/repo/</url>
     </repository>
 </repositories>
+
 </project>
